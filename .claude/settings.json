@@ -1,0 +1,13 @@
+{
+  "project": {
+    "name": "Josephine's Soul Food",
+    "description": "Modern restaurant website for a Black-owned soul food restaurant in Toledo, Ohio",
+    "type": "web-app"
+  },
+  "preferences": {
+    "language": "typescript",
+    "framework": "nextjs",
+    "styling": "tailwindcss",
+    "testFramework": "jest"
+  }
+}
