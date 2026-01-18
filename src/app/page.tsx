@@ -5,13 +5,10 @@ import { StoryPreview } from '@/components/home/StoryPreview';
 import { NewsFeature } from '@/components/home/NewsFeature';
 import { TestimonialCarousel } from '@/components/home/TestimonialCarousel';
 import { DeliveryZones } from '@/components/home/DeliveryZones';
-import { FloatingPhone } from '@/components/home/FloatingPhone';
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white">
-      {/* Floating Phone - Click to call */}
-      <FloatingPhone />
 
       {/* Hero - Immediate impact with clear CTA */}
       <VideoHero />

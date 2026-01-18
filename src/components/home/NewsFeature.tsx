@@ -30,6 +30,39 @@ export function NewsFeature() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Toledo Book - Left decorative element */}
+        <div className="hidden lg:block absolute left-8 top-1/2 -translate-y-1/2">
+          <img
+            src="/images/branding/toledo-book.jpg"
+            alt="100 Things to Do in Toledo Before You Die"
+            className="w-44 h-auto rounded-lg shadow-xl transition-all duration-300 hover:scale-110 cursor-pointer"
+            style={{
+              transform: 'rotate(-6deg)',
+              filter: 'drop-shadow(4px 6px 12px rgba(0,0,0,0.3))',
+            }}
+          />
+          <p className="text-center text-xs text-gray-500 mt-3 font-medium max-w-[176px]">
+            We're on the list!
+          </p>
+        </div>
+
+        {/* Ohio State Logo - Right decorative element */}
+        <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2">
+          <img
+            src="/images/branding/ohio-state-logo.png"
+            alt="Ohio State"
+            className="w-44 h-auto transition-all duration-300 hover:scale-110 cursor-pointer"
+            style={{
+              transform: 'rotate(6deg)',
+              filter: 'drop-shadow(4px 6px 12px rgba(0,0,0,0.2))',
+              opacity: 0.85,
+            }}
+          />
+          <p className="text-center text-xs text-gray-500 mt-3 font-medium">
+            Ohio Pride
+          </p>
+        </div>
+
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
           <span className="inline-block px-5 py-2.5 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider rounded-full mb-6">

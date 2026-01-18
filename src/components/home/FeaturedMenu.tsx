@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/Button';
+import { NeonSign } from './NeonSign';
 
 const featuredDishes = [
   {
@@ -84,12 +85,21 @@ export function FeaturedMenu() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="relative flex flex-col items-center text-center mb-16">
-          {/* Toledo Stamp - Left */}
+          {/* Toledo Stamp - Left (sticker effect) */}
           <img
             src="/images/branding/toledo-stamp.png"
             alt="Toledo Ohio"
-            className="hidden lg:block absolute left-0 top-0 w-56 h-auto opacity-80"
+            className="hidden lg:block absolute left-0 top-0 w-56 h-auto"
+            style={{
+              transform: 'rotate(-6deg)',
+              filter: 'drop-shadow(3px 5px 8px rgba(0,0,0,0.25))',
+            }}
           />
+
+          {/* Neon Sign - Right (balanced with Toledo Stamp) */}
+          <div className="hidden lg:block absolute right-0 top-8">
+            <NeonSign />
+          </div>
 
           <span className="inline-block px-5 py-2.5 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider rounded-full mb-6">
             Toledo's Most Beloved

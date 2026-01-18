@@ -60,7 +60,7 @@ export function VideoHero() {
           </div>
 
           {/* Trust Signals - Professional & Clean */}
-          <div className="flex flex-wrap items-center justify-center gap-6 pt-6 text-white">
+          <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-white">
             <div className="flex items-center gap-3 bg-black/50 backdrop-blur-md px-5 py-3 rounded-full border border-white/10">
               <span className="text-sm font-semibold">4.9 Rating · 500+ Reviews</span>
             </div>
