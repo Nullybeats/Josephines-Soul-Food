@@ -5,6 +5,7 @@ import { StoryPreview } from '@/components/home/StoryPreview';
 import { NewsFeature } from '@/components/home/NewsFeature';
 import { TestimonialCarousel } from '@/components/home/TestimonialCarousel';
 import { DeliveryZones } from '@/components/home/DeliveryZones';
+import { FadeInSection } from '@/components/ui/FadeInSection';
 
 export default function HomePage() {
   return (
@@ -17,19 +18,29 @@ export default function HomePage() {
       <MarqueeBanner />
 
       {/* Featured Menu - The star of the show, FOOD FIRST! */}
-      <FeaturedMenu />
+      <FadeInSection>
+        <FeaturedMenu />
+      </FadeInSection>
 
       {/* Testimonial Carousel - Social proof right after seeing the food */}
-      <TestimonialCarousel />
+      <FadeInSection delay={100}>
+        <TestimonialCarousel />
+      </FadeInSection>
 
       {/* News Feature - Media credibility builds trust */}
-      <NewsFeature />
+      <FadeInSection delay={100}>
+        <NewsFeature />
+      </FadeInSection>
 
       {/* Delivery Zones - Show service areas and delivery times */}
-      <DeliveryZones />
+      <FadeInSection delay={100}>
+        <DeliveryZones />
+      </FadeInSection>
 
       {/* Story Preview - Heritage and connection */}
-      <StoryPreview />
+      <FadeInSection delay={100}>
+        <StoryPreview />
+      </FadeInSection>
     </main>
   );
 }

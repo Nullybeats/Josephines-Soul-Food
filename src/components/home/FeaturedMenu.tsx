@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { NeonSign } from './NeonSign';
 
@@ -80,11 +81,37 @@ const featuredDishes = [
 ];
 
 export function FeaturedMenu() {
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Stagger the card animations
+          featuredDishes.forEach((_, index) => {
+            setTimeout(() => {
+              setVisibleCards(prev => [...prev, index]);
+            }, index * 100);
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (gridRef.current) {
+      observer.observe(gridRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="featured-menu" className="py-16 lg:py-20 bg-white scroll-mt-20">
+    <section id="featured-menu" className="py-12 sm:py-16 lg:py-20 bg-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="relative flex flex-col items-center text-center mb-16">
+        <div className="relative flex flex-col items-center text-center mb-10 sm:mb-16">
           {/* Toledo Stamp - Left (sticker effect) */}
           <img
             src="/images/branding/toledo-stamp.png"
@@ -101,35 +128,40 @@ export function FeaturedMenu() {
             <NeonSign />
           </div>
 
-          <span className="inline-block px-5 py-2.5 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider rounded-full mb-6">
+          <span className="inline-block px-4 py-2 sm:px-5 sm:py-2.5 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs sm:text-sm font-bold uppercase tracking-wider rounded-full mb-4 sm:mb-6">
             Toledo's Most Beloved
           </span>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
             Our Table, Your Table
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl leading-relaxed text-center">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl leading-relaxed text-center px-2">
             These are the dishes we grew up on—the ones that filled our grandmother's kitchen with warmth
             and our hearts with memories. Now, they're ready to do the same for you, crafted fresh daily
             and at your door in 20 minutes.
           </p>
 
           {/* Free Delivery Banner */}
-          <div className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 bg-green-100 text-green-700 rounded-full">
-            <span className="text-sm font-bold uppercase tracking-wide">
+          <div className="mt-6 sm:mt-8 inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-green-100 text-green-700 rounded-full">
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wide">
               Free Delivery on Orders $30+
             </span>
           </div>
         </div>
 
         {/* Featured Dishes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {featuredDishes.map((dish) => (
+        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-10 sm:mb-12">
+          {featuredDishes.map((dish, index) => (
             <div
               key={dish.id}
-              className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-[var(--color-primary)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
+              className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-[var(--color-primary)] transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col"
+              style={{
+                opacity: visibleCards.includes(index) ? 1 : 0,
+                transform: visibleCards.includes(index) ? 'translateY(0)' : 'translateY(30px)',
+                transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+              }}
             >
               {/* Dish Image */}
-              <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+              <div className="relative h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
                 {/* Actual Food Image */}
                 <img
                   src={dish.image}
@@ -155,17 +187,17 @@ export function FeaturedMenu() {
               </div>
 
               {/* Dish Info */}
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-display text-xl font-bold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors">
+              <div className="p-4 sm:p-5 lg:p-6 flex flex-col flex-grow">
+                <div className="flex items-start justify-between mb-2 sm:mb-3">
+                  <h3 className="font-display text-lg sm:text-xl font-bold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors">
                     {dish.name}
                   </h3>
-                  <span className="text-2xl font-bold text-[var(--color-primary)] ml-2 flex-shrink-0">
+                  <span className="text-xl sm:text-2xl font-bold text-[var(--color-primary)] ml-2 flex-shrink-0">
                     ${dish.price.toFixed(2)}
                   </span>
                 </div>
 
-                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3 flex-grow">
+                <p className="text-gray-600 text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3 flex-grow">
                   {dish.description}
                 </p>
 

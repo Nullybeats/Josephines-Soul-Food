@@ -82,42 +82,42 @@ export function TestimonialCarousel() {
 
   return (
     <section
-      className="relative pt-16 pb-8 lg:pt-20 lg:pb-10 bg-gradient-to-b from-amber-50/60 via-orange-50/40 to-amber-50/60 overflow-hidden"
+      className="relative pt-12 pb-6 sm:pt-16 sm:pb-8 lg:pt-20 lg:pb-10 bg-gradient-to-b from-amber-50/60 via-orange-50/40 to-amber-50/60 overflow-hidden"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-0 w-96 h-96 bg-[var(--color-primary)]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-0 w-96 h-96 bg-[var(--color-primary)]/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-[var(--color-primary)]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-[var(--color-primary)]/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-yellow-100 text-yellow-700 rounded-full mb-6">
-            <span className="text-sm font-bold uppercase tracking-wide">
+        <div className="flex flex-col items-center text-center mb-10 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-yellow-100 text-yellow-700 rounded-full mb-4 sm:mb-6">
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wide">
               4.9 Stars · 500+ Reviews
             </span>
           </div>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
             What Our Community Says
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl text-center leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl text-center leading-relaxed px-2">
             Don't just take our word for it — hear from the families we've been serving for generations.
           </p>
         </div>
 
         {/* Carousel */}
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-4xl mx-auto px-2 sm:px-0">
           {/* Main testimonial card */}
-          <div className="relative bg-white rounded-3xl shadow-2xl p-8 md:p-12 overflow-hidden border border-gray-100">
+          <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-8 md:p-12 overflow-hidden border border-gray-100">
             {/* Animated background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/5 to-transparent" />
 
             {/* Large quote mark */}
-            <div className="absolute top-6 right-6 opacity-10">
-              <span className="text-8xl font-serif text-[var(--color-primary)]">"</span>
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 opacity-10">
+              <span className="text-5xl sm:text-8xl font-serif text-[var(--color-primary)]">"</span>
             </div>
 
             {/* Content with slide animation */}
@@ -126,11 +126,11 @@ export function TestimonialCarousel() {
               className="relative z-10 animate-slideIn"
             >
               {/* Stars */}
-              <div className="flex gap-1 mb-6 justify-center">
+              <div className="flex gap-1 mb-4 sm:mb-6 justify-center">
                 {[...Array(currentTestimonial.rating)].map((_, i) => (
                   <span
                     key={i}
-                    className="text-yellow-400 text-xl animate-starPop"
+                    className="text-yellow-400 text-lg sm:text-xl animate-starPop"
                     style={{ animationDelay: `${i * 100}ms` }}
                   >
                     ★
@@ -139,29 +139,29 @@ export function TestimonialCarousel() {
               </div>
 
               {/* Testimonial text */}
-              <blockquote className="text-xl md:text-2xl lg:text-3xl text-gray-700 leading-relaxed mb-8 text-center font-medium">
+              <blockquote className="text-base sm:text-xl md:text-2xl lg:text-3xl text-gray-700 leading-relaxed mb-6 sm:mb-8 text-center font-medium">
                 "{currentTestimonial.text}"
               </blockquote>
 
               {/* Author info */}
-              <div className="flex items-center gap-4 justify-center">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-gold)] flex items-center justify-center text-white font-bold text-xl shadow-lg">
+              <div className="flex items-center gap-3 sm:gap-4 justify-center">
+                <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-gold)] flex items-center justify-center text-white font-bold text-base sm:text-xl shadow-lg">
                   {currentTestimonial.name.charAt(0)}
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-lg text-gray-900">
+                    <span className="font-bold text-base sm:text-lg text-gray-900">
                       {currentTestimonial.name}
                     </span>
                     {currentTestimonial.verified && (
-                      <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center" title="Verified Customer">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 bg-blue-500 rounded-full flex items-center justify-center" title="Verified Customer">
+                        <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       </div>
                     )}
                   </div>
-                  <span className="text-gray-500">{currentTestimonial.location}</span>
+                  <span className="text-gray-500 text-sm sm:text-base">{currentTestimonial.location}</span>
                 </div>
               </div>
             </div>
@@ -170,30 +170,30 @@ export function TestimonialCarousel() {
           {/* Navigation arrows */}
           <button
             onClick={goToPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-[var(--color-primary)] hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 md:-translate-x-6 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-[var(--color-primary)] hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
             aria-label="Previous testimonial"
           >
-            <span className="text-lg font-bold">&lt;</span>
+            <span className="text-base sm:text-lg font-bold">&lt;</span>
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-[var(--color-primary)] hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4 md:translate-x-6 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-[var(--color-primary)] hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
             aria-label="Next testimonial"
           >
-            <span className="text-lg font-bold">&gt;</span>
+            <span className="text-base sm:text-lg font-bold">&gt;</span>
           </button>
         </div>
 
         {/* Dot indicators */}
-        <div className="flex items-center justify-center gap-3 mt-8">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mt-6 sm:mt-8">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
               className={`transition-all duration-300 rounded-full focus:outline-none ${
                 index === currentIndex
-                  ? 'w-8 h-3 bg-[var(--color-primary)]'
-                  : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
+                  ? 'w-6 sm:w-8 h-2 sm:h-3 bg-[var(--color-primary)]'
+                  : 'w-2 sm:w-3 h-2 sm:h-3 bg-gray-300 hover:bg-gray-400'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />
@@ -201,7 +201,7 @@ export function TestimonialCarousel() {
         </div>
 
         {/* Progress bar */}
-        <div className="mt-6 max-w-xs mx-auto">
+        <div className="mt-4 sm:mt-6 max-w-xs mx-auto">
           <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-gold)] transition-all duration-300"
@@ -211,24 +211,24 @@ export function TestimonialCarousel() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-10">
+        <div className="text-center mt-8 sm:mt-10">
           <a
             href="https://www.google.com/maps/place/Josephine's+Soul+Food+Kitchen"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] font-bold transition-colors group"
+            className="inline-flex items-center gap-2 text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] font-bold text-sm sm:text-base transition-colors group"
           >
             Read All Reviews on Google
           </a>
         </div>
 
         {/* Toledo Skyline Banner - Subtle transition divider */}
-        <div className="mt-6 flex justify-center opacity-50">
+        <div className="mt-4 sm:mt-6 flex justify-center opacity-50">
           <img
             src="/images/branding/toledo-skyline-banner.png"
             alt=""
             aria-hidden="true"
-            className="w-80 h-auto"
+            className="w-60 sm:w-80 h-auto"
           />
         </div>
       </div>
