@@ -82,14 +82,14 @@ export function TestimonialCarousel() {
 
   return (
     <section
-      className="relative py-16 lg:py-20 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden"
+      className="relative pt-16 pb-8 lg:pt-20 lg:pb-10 bg-gradient-to-b from-amber-50/60 via-orange-50/40 to-amber-50/60 overflow-hidden"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-0 w-96 h-96 bg-[var(--color-primary)]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-0 w-96 h-96 bg-[var(--color-primary)]/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-0 w-96 h-96 bg-[var(--color-primary)]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-0 w-96 h-96 bg-[var(--color-primary)]/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -220,6 +220,16 @@ export function TestimonialCarousel() {
           >
             Read All Reviews on Google
           </a>
+        </div>
+
+        {/* Toledo Skyline Banner - Subtle transition divider */}
+        <div className="mt-6 flex justify-center opacity-50">
+          <img
+            src="/images/branding/toledo-skyline-banner.png"
+            alt=""
+            aria-hidden="true"
+            className="w-80 h-auto"
+          />
         </div>
       </div>
 

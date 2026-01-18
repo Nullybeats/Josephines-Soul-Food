@@ -37,14 +37,9 @@ export function DeliveryZones() {
           <img
             src="/images/branding/toledo-silhouette.png"
             alt="Toledo Ohio Skyline"
-            className="hidden lg:block absolute right-0 -top-72 w-96 h-auto opacity-60"
+            className="hidden lg:block absolute right-12 top-12 w-48 h-40 object-contain opacity-60"
           />
 
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-100 text-green-700 rounded-full mb-6">
-            <span className="text-sm font-bold uppercase tracking-wide">
-              Free Delivery on Orders $30+
-            </span>
-          </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             From Our Kitchen to Your Neighborhood
           </h2>
@@ -97,29 +92,24 @@ export function DeliveryZones() {
           ))}
         </div>
 
-        {/* CTA Box */}
-        <div className="bg-[var(--color-primary)] rounded-2xl p-8 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-3">
-              Don't See Your Area?
-            </h3>
-            <p className="text-white/90 text-lg mb-6">
-              Give us a call! We're always expanding our delivery zones and may be able to accommodate your location.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href="tel:+14192426666"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-full font-bold hover:bg-gray-100 transition-all duration-200 hover:scale-105"
-              >
-                Call (419) 242-6666
-              </a>
-              <a
-                href="/order"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-full font-bold hover:bg-white hover:text-gray-900 transition-all duration-200 hover:scale-105"
-              >
-                Check Delivery at Checkout
-              </a>
-            </div>
+        {/* CTA */}
+        <div className="text-center">
+          <p className="text-gray-700 font-semibold mb-4">
+            Don't see your area? Give us a call!
+          </p>
+          <div className="flex flex-row gap-3 justify-center">
+            <a
+              href="tel:+14192426666"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2 bg-[var(--color-primary)] text-white rounded-full font-bold text-sm hover:bg-[var(--color-primary-dark)] transition-all duration-200 hover:scale-105"
+            >
+              Call (419) 242-6666
+            </a>
+            <a
+              href="/order"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2 border-2 border-[var(--color-primary)] text-[var(--color-primary)] rounded-full font-bold text-sm hover:bg-[var(--color-primary)] hover:text-white transition-all duration-200 hover:scale-105"
+            >
+              Check Delivery
+            </a>
           </div>
         </div>
       </div>

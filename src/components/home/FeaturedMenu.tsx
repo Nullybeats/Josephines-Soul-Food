@@ -19,10 +19,10 @@ const featuredDishes = [
     name: 'Oxtails Dinner',
     description: 'Tender, succulent oxtails braised for hours in rich, savory gravy until they melt off the bone. A true soul food delicacy served with two sides.',
     price: 30.00,
-    image: '/images/menu/oxtails-dinner.jpg',
+    image: '/images/menu/oxtails-dinner-new.jpg',
     imagePosition: '50% 100%',
-    imageTransform: 'translateY(-10%)',
-    imageFilter: 'brightness(1.15) contrast(1.1) saturate(1.2)',
+    imageTransform: 'translateY(-15%)',
+    imageFilter: 'brightness(1.05) contrast(1.1) saturate(1.15)',
     tag: 'Premium',
     scarcity: 'Limited Daily!',
     stock: 'low',
@@ -70,7 +70,7 @@ const featuredDishes = [
     price: 18.00,
     image: '/images/menu/meatloaf.jpg',
     imagePosition: '50% 100%',
-    imageTransform: 'translateY(-35%)',
+    imageTransform: 'translateY(-40%)',
     imageFilter: 'brightness(1.15) contrast(1.2) saturate(1.25)',
     tag: 'Homestyle',
     scarcity: null,
@@ -102,6 +102,13 @@ export function FeaturedMenu() {
             and our hearts with memories. Now, they're ready to do the same for you, crafted fresh daily
             and at your door in 20 minutes.
           </p>
+
+          {/* Free Delivery Banner */}
+          <div className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 bg-green-100 text-green-700 rounded-full">
+            <span className="text-sm font-bold uppercase tracking-wide">
+              Free Delivery on Orders $30+
+            </span>
+          </div>
         </div>
 
         {/* Featured Dishes Grid */}
@@ -109,7 +116,7 @@ export function FeaturedMenu() {
           {featuredDishes.map((dish) => (
             <div
               key={dish.id}
-              className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-[var(--color-primary)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-[var(--color-primary)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
             >
               {/* Dish Image */}
               <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
@@ -138,7 +145,7 @@ export function FeaturedMenu() {
               </div>
 
               {/* Dish Info */}
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <div className="flex items-start justify-between mb-3">
                   <h3 className="font-display text-xl font-bold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors">
                     {dish.name}
@@ -148,43 +155,37 @@ export function FeaturedMenu() {
                   </span>
                 </div>
 
-                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3 flex-grow">
                   {dish.description}
                 </p>
 
-                {/* Scarcity Messaging */}
-                {dish.scarcity && (
-                  <div className={`text-xs font-bold mb-2 ${
-                    dish.stock === 'low' ? 'text-red-600' :
-                    dish.stock === 'medium' ? 'text-orange-600' :
-                    'text-[var(--color-primary)]'
-                  }`}>
-                    {dish.scarcity}
-                  </div>
-                )}
-                <Button
+                {/* Scarcity Messaging + Button Container */}
+                <div className="mt-auto">
+                  {dish.scarcity && (
+                    <div className={`text-xs font-bold mb-2 ${
+                      dish.stock === 'low' ? 'text-red-600' :
+                      dish.stock === 'medium' ? 'text-orange-600' :
+                      'text-[var(--color-primary)]'
+                    }`}>
+                      {dish.scarcity}
+                    </div>
+                  )}
+                  <Button
                   variant="primary"
                   size="md"
                   className="w-full font-bold"
                   onClick={() => console.log(`Add ${dish.name} to cart`)}
                 >
-                  Quick Add • ${dish.price.toFixed(2)}
-                </Button>
+                    Quick Add • ${dish.price.toFixed(2)}
+                  </Button>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
         {/* View Full Menu CTA */}
-        <div className="relative text-center">
-          {/* Decorative Image - Left */}
-          <img
-            src="/images/branding/decorative-image.png"
-            alt=""
-            aria-hidden="true"
-            className="hidden lg:block absolute left-0 -top-4 w-96 h-auto opacity-90"
-          />
-
+        <div className="text-center">
           <Button
             variant="outline"
             size="lg"

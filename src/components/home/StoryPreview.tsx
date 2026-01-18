@@ -2,11 +2,11 @@
 
 export function StoryPreview() {
   return (
-    <section className="relative py-16 lg:py-20 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
+    <section className="relative py-16 lg:py-20 bg-gradient-to-b from-amber-50/60 via-orange-50/40 to-amber-50/60 overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-0 w-96 h-96 bg-[var(--color-primary)]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-0 w-96 h-96 bg-[var(--color-primary)]/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-0 w-96 h-96 bg-[var(--color-primary)]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-0 w-96 h-96 bg-[var(--color-primary)]/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -20,7 +20,7 @@ export function StoryPreview() {
             <br />
             <span className="text-[var(--color-primary)]">Flavor & Tradition</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl text-center leading-relaxed">
+          <p className="text-[15px] text-gray-600 max-w-3xl mx-auto text-center leading-relaxed">
             Since 1988, we've been serving Toledo with love, one plate at a time.
           </p>
         </div>
@@ -31,7 +31,7 @@ export function StoryPreview() {
           <div className="relative order-2 lg:order-1">
             <div className="relative">
               {/* Main image container */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-gray-200">
+              <div className="relative rounded-3xl overflow-hidden shadow-lg">
                 <div className="aspect-[4/5]">
                   <img
                     src="/images/menu/family-photo.png"
@@ -40,9 +40,6 @@ export function StoryPreview() {
                   />
                 </div>
               </div>
-
-              {/* Decorative frame accent */}
-              <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-[var(--color-primary)]/20 rounded-3xl -z-10" />
             </div>
 
             {/* Stats card overlay */}

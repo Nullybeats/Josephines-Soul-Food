@@ -22,7 +22,7 @@ export function NewsFeature() {
   };
 
   return (
-    <section className="relative py-16 lg:py-20 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
+    <section className="relative pt-0 pb-16 lg:pt-0 lg:pb-20 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-[var(--color-primary)]/5 rounded-full blur-3xl" />
