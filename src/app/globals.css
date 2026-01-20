@@ -105,6 +105,21 @@
   --input: #E5E5E5;
   --ring: #816B3B;
   --color-gold: #B89D6B;
+
+  /* Semantic Color Aliases (for page consistency) */
+  --color-charcoal: var(--color-black);
+  --color-charcoal-light: var(--color-gray-600);
+  --color-cream: var(--color-gray-50);
+  --color-warm-white: var(--color-white);
+
+  /* Semantic Shadow Aliases */
+  --shadow-soft: var(--shadow-sm);
+  --shadow-elevated: var(--shadow-xl);
+
+  /* Page Typography */
+  --text-h1: clamp(2.25rem, 5vw, 3.75rem);
+  --text-h2: clamp(1.5rem, 4vw, 3rem);
+
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);

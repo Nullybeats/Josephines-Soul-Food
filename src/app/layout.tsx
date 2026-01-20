@@ -18,27 +18,42 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Josephine's Kitchen | Family Recipes, Served With Soul",
+  title: {
+    default: "Josephine's Soul Food | Authentic Soul Food in Toledo, Ohio",
+    template: "%s | Josephine's Soul Food",
+  },
   description:
-    "Where family recipes meet soul. Josephine's Kitchen serves authentic home-style cooking passed down through generations. Experience the warmth of Ohio's beloved heritage restaurant. Order online for pickup or delivery.",
+    "Serving authentic soul food with love for over 37 years in Toledo, Ohio. Family recipes passed down through generations. Fried chicken, mac & cheese, collard greens, and more. Order online for pickup or delivery.",
   keywords: [
-    'soul food',
-    'Ohio restaurant',
-    'southern cooking',
-    'home cooking',
-    'fried chicken',
+    'soul food Toledo',
+    'Black-owned restaurant Ohio',
+    'southern cooking Toledo',
+    'fried chicken Toledo',
     'mac and cheese',
     'collard greens',
-    'family recipes',
-    'catering',
+    'family restaurant',
+    'catering Toledo',
     'online ordering',
+    'soul food delivery',
   ],
+  authors: [{ name: "Josephine's Soul Food" }],
+  creator: "Josephine's Soul Food",
   openGraph: {
-    title: "Josephine's Kitchen | Family Recipes, Served With Soul",
+    title: "Josephine's Soul Food | Authentic Soul Food in Toledo, Ohio",
     description:
-      'Where family recipes meet soul. Experience the warmth of home cooking passed down through generations.',
+      'Serving authentic soul food with love for over 37 years. Family recipes passed down through generations.',
     type: 'website',
     locale: 'en_US',
+    siteName: "Josephine's Soul Food",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Josephine's Soul Food | Toledo, Ohio",
+    description: 'Authentic soul food served with love for over 37 years.',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
