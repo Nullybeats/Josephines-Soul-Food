@@ -105,7 +105,7 @@ export function DeliveryZones() {
               Call (419) 242-6666
             </a>
             <a
-              href="/order"
+              href="https://josephinessoulfood.com/menu"
               className="inline-flex items-center justify-center gap-2 px-4 py-2 sm:px-5 border-2 border-[var(--color-primary)] text-[var(--color-primary)] rounded-full font-bold text-xs sm:text-sm hover:bg-[var(--color-primary)] hover:text-white transition-all duration-200 hover:scale-105"
             >
               Check Delivery

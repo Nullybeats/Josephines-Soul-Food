@@ -235,7 +235,7 @@ export default function AboutPage() {
               Whether you dine in, order online, or let us cater your event, you&apos;re family now.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/order">
+              <Link href="https://josephinessoulfood.com/menu">
                 <Button variant="primary" size="lg" className="w-full sm:w-auto">
                   Order Online
                 </Button>

@@ -39,9 +39,6 @@ export function Header() {
             <a href="/menu" className="px-4 py-2 text-sm font-semibold text-amber-900 hover:text-amber-700 hover:bg-amber-100/50 rounded-lg transition-all">
               Menu
             </a>
-            <a href="/store" className="px-4 py-2 text-sm font-semibold text-amber-900 hover:text-amber-700 hover:bg-amber-100/50 rounded-lg transition-all">
-              Store
-            </a>
             <a href="/about" className="px-4 py-2 text-sm font-semibold text-amber-900 hover:text-amber-700 hover:bg-amber-100/50 rounded-lg transition-all">
               About
             </a>
@@ -88,7 +85,7 @@ export function Header() {
               variant="primary"
               size="sm"
               className="hidden md:inline-flex bg-amber-700 hover:bg-amber-800 text-white font-bold shadow-md"
-              onClick={() => (window.location.href = '/order')}
+              onClick={() => (window.location.href = 'https://josephinessoulfood.com/menu')}
             >
               Order Now
             </Button>

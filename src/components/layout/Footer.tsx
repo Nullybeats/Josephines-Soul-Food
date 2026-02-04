@@ -80,7 +80,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="/order"
+                  href="https://josephinessoulfood.com/menu"
                   className="text-gray-400 hover:text-[var(--color-primary)] transition-colors duration-200 text-sm"
                 >
                   Order Online
