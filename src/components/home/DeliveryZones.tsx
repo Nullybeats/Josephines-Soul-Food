@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 const deliveryZones = [
   {
     name: 'Downtown Toledo',
@@ -58,12 +60,15 @@ export function DeliveryZones() {
               href="/menu"
               className="group bg-white rounded-lg sm:rounded-xl border-2 border-gray-200 hover:border-[var(--color-primary)] overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 text-center block cursor-pointer"
             >
-              {/* Zone Image */}
+              {/* Zone Image - Optimized */}
               <div className="relative h-24 sm:h-32 lg:h-40 overflow-hidden">
-                <img
+                <Image
                   src={zone.image}
-                  alt={zone.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  alt={`Soul food delivery to ${zone.name} - Toledo Ohio`}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
               </div>
 

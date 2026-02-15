@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 
 export function Header() {
@@ -12,11 +13,14 @@ export function Header() {
             <a href="/" className="flex items-center gap-3 group">
               {/* Oval Portrait Container */}
               <div className="relative w-20 h-24 overflow-hidden transition-all duration-200 group-hover:scale-105" style={{ borderRadius: '50% / 60%', backgroundColor: 'transparent' }}>
-                <img
+                <Image
                   src="/images/branding/josephine-portrait.png"
-                  alt="Josephine"
+                  alt="Josephine Williams - Founder of Josephine's Soul Food Toledo Ohio"
+                  width={80}
+                  height={96}
                   className="w-full h-full object-cover scale-[1.8]"
                   style={{ objectPosition: '50% 40%' }}
+                  priority
                 />
               </div>
               {/* Brand Text */}

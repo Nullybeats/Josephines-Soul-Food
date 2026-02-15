@@ -1,0 +1,317 @@
+// Josephine's Soul Food Database Schema
+// Single restaurant architecture
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ==================== USER & AUTHENTICATION ====================
+
+model User {
+  id       String   @id @default(cuid())
+  email    String   @unique
+  name     String
+  password String   // bcrypt hashed
+  role     UserRole @default(ADMIN)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  STAFF
+}
+
+// ==================== MENU ====================
+
+model MenuItem {
+  id   String @id @default(cuid())
+
+  name          String
+  slug          String       @unique
+  description   String
+  price         Decimal      @db.Decimal(10, 2)
+  category      MenuCategory
+
+  // Media
+  image         String?
+  imagePosition String? @default("50% 50%")
+
+  // Availability
+  available Boolean @default(true)
+  featured  Boolean @default(false)
+
+  // Metadata
+  tags          String[]
+  allergens     String[]
+  nutritionInfo Json?
+  prepTime      Int? // minutes
+  sortOrder     Int  @default(0)
+
+  // Relations
+  OrderItem OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum MenuCategory {
+  ENTREES
+  SEAFOOD
+  SIDES
+  DESSERTS
+  DRINKS
+  SPECIALS
+  SUNDAY
+}
+
+// ==================== ORDERS ====================
+
+model Order {
+  id          String @id @default(cuid())
+  orderNumber String @unique // e.g., "JS-20260212-001"
+
+  // Customer info
+  customerId    String?
+  customer      Customer? @relation(fields: [customerId], references: [id])
+  customerName  String
+  customerEmail String?
+  customerPhone String
+
+  // Order details
+  items       OrderItem[]
+  subtotal    Decimal     @db.Decimal(10, 2)
+  tax         Decimal     @db.Decimal(10, 2)
+  deliveryFee Decimal     @db.Decimal(10, 2) @default(0)
+  total       Decimal     @db.Decimal(10, 2)
+
+  // Fulfillment
+  type         OrderType
+  status       OrderStatus   @default(PENDING)
+  scheduledFor DateTime?
+
+  // Delivery info (if applicable)
+  deliveryAddress String?
+  deliveryNotes   String?
+
+  // Payment
+  paymentMethod String?       // "cash", "card", "clover", etc.
+  paymentStatus PaymentStatus @default(UNPAID)
+  cloverOrderId String?       @unique
+
+  // Special instructions
+  specialInstructions String?
+
+  // Metadata
+  source      String   @default("online") // "online", "phone", "walk-in", "clover"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  completedAt DateTime?
+
+  // Analytics relationship
+  OrderAnalytics OrderAnalytics?
+}
+
+enum OrderType {
+  PICKUP
+  DELIVERY
+  DINE_IN
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PREPARING
+  READY
+  OUT_FOR_DELIVERY
+  DELIVERED
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  REFUNDED
+  FAILED
+}
+
+model OrderItem {
+  id      String @id @default(cuid())
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  menuItemId String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+
+  quantity            Int
+  price               Decimal @db.Decimal(10, 2)
+  subtotal            Decimal @db.Decimal(10, 2)
+  specialInstructions String?
+  createdAt           DateTime @default(now())
+}
+
+// ==================== CUSTOMERS ====================
+
+model Customer {
+  id   String @id @default(cuid())
+
+  // Customer Info
+  name  String
+  email String? @unique
+  phone String  @unique
+
+  // Addresses
+  defaultAddress String?
+  addresses      Address[]
+
+  // Stats
+  totalOrders Int       @default(0)
+  totalSpent  Decimal   @db.Decimal(10, 2) @default(0)
+  lastOrderAt DateTime?
+
+  // Marketing
+  emailOptIn Boolean @default(false)
+  smsOptIn   Boolean @default(false)
+
+  // Relations
+  orders Order[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  label      String? // "Home", "Work", etc.
+  street     String
+  city       String
+  state      String
+  zip        String
+  createdAt  DateTime @default(now())
+}
+
+// ==================== CATERING ====================
+
+model CateringRequest {
+  id   String @id @default(cuid())
+
+  // Contact
+  name  String
+  email String
+  phone String
+
+  // Event details
+  eventType   CateringEventType
+  eventDate   DateTime
+  guestCount  Int
+  packageType String?
+  budget      Decimal? @db.Decimal(10, 2)
+
+  // Location
+  venue           String?
+  deliveryAddress String?
+  message         String?
+
+  // Status
+  status      RequestStatus @default(NEW)
+  assignedTo  String?
+  notes       String? // Admin notes
+  respondedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum CateringEventType {
+  WEDDING
+  CORPORATE
+  BIRTHDAY
+  FUNERAL
+  GRADUATION
+  REUNION
+  OTHER
+}
+
+enum RequestStatus {
+  NEW
+  CONTACTED
+  QUOTED
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+// ==================== SETTINGS ====================
+
+model RestaurantSettings {
+  id String @id @default("singleton")
+
+  // Business Info
+  restaurantName String @default("Josephine's Soul Food")
+  phone          String @default("(419) 242-6666")
+  email          String @default("info@josephinessoulfood.com")
+  address        String @default("902 Lagrange St, Toledo, OH 43604")
+
+  // Hours (JSON: { "monday": { "open": "11:00", "close": "20:00" }, ... })
+  businessHours Json
+
+  // Ordering settings
+  onlineOrderingEnabled Boolean @default(true)
+  pickupEnabled         Boolean @default(true)
+  deliveryEnabled       Boolean @default(true)
+
+  // Fees & minimums
+  taxRate             Decimal @db.Decimal(5, 4) @default(0.0725) // 7.25% Ohio
+  deliveryFee         Decimal @db.Decimal(10, 2) @default(5.00)
+  freeDeliveryMinimum Decimal @db.Decimal(10, 2) @default(30.00)
+  minimumOrderAmount  Decimal @db.Decimal(10, 2) @default(0)
+
+  // Delivery zones (JSON array: ["Downtown Toledo", "Old West End", ...])
+  deliveryZones Json
+
+  // Notifications
+  notificationEmail String?
+  notificationPhone String?
+
+  updatedAt DateTime @updatedAt
+}
+
+// ==================== ANALYTICS ====================
+
+model PageView {
+  id   String @id @default(cuid())
+
+  path      String
+  userAgent String?
+  referer   String?
+  createdAt DateTime @default(now())
+
+  @@index([path, createdAt])
+}
+
+model OrderAnalytics {
+  id      String @id @default(cuid())
+  orderId String @unique
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  date       DateTime
+  hour       Int // 0-23 for hourly analysis
+  dayOfWeek  Int // 0-6 (Sunday = 0)
+  orderTotal Decimal   @db.Decimal(10, 2)
+  itemCount  Int
+  orderType  OrderType
+  createdAt  DateTime  @default(now())
+
+  @@index([date])
+  @@index([dayOfWeek, hour])
+}

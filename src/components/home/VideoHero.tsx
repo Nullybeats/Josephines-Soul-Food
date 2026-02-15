@@ -1,18 +1,24 @@
 'use client';
 
+import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 
 export function VideoHero() {
   return (
     <section className="relative w-full h-screen min-h-[600px] sm:min-h-[700px] overflow-hidden bg-neutral-900">
-      {/* Hero Background Image with subtle zoom animation */}
+      {/* Hero Background Image with subtle zoom animation - Optimized with Next.js Image */}
       <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center animate-slow-zoom"
-          style={{
-            backgroundImage: `url('/images/hero-main.png')`
-          }}
-        />
+        <div className="absolute inset-0 animate-slow-zoom">
+          <Image
+            src="/images/hero-main.png"
+            alt="Josephine's Soul Food - Authentic soul food dishes in Toledo, Ohio"
+            fill
+            priority
+            quality={85}
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
 
         {/* Professional gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30" />

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import { NeonSign } from './NeonSign';
 
@@ -160,22 +161,18 @@ export function FeaturedMenu() {
                 transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
               }}
             >
-              {/* Dish Image */}
+              {/* Dish Image - Optimized with Next.js Image */}
               <div className="relative h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                {/* Actual Food Image */}
-                <img
+                <Image
                   src={dish.image}
-                  alt={dish.name}
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                  alt={`${dish.name} - Soul food dish at Josephine's Toledo Ohio`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-all duration-500 group-hover:scale-105"
                   style={{
                     objectPosition: dish.imagePosition || '50% 50%',
-                    transform: dish.imageTransform || 'none',
-                    filter: dish.imageFilter || 'brightness(1.05) contrast(1.1) saturate(1.15)'
                   }}
-                  onError={(e) => {
-                    // Fallback if image fails to load
-                    e.currentTarget.style.display = 'none';
-                  }}
+                  loading="lazy"
                 />
 
                 {/* Tag Badge */}
