@@ -1,5 +1,4 @@
 import { requireAuth } from '@/lib/auth-utils';
-import { redirect } from 'next/navigation';
 import AdminNav from '@/components/admin/layout/AdminNav';
 import AdminHeader from '@/components/admin/layout/AdminHeader';
 
@@ -9,6 +8,7 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   // Protect this entire layout - redirect to login if not authenticated
+  // Note: /admin/login has its own layout.tsx that bypasses this
   const session = await requireAuth();
 
   // If we get here, user is authenticated
