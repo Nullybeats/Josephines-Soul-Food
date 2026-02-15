@@ -27,26 +27,36 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       async authorize(credentials) {
         try {
+          console.log('[AUTH] Authorize called');
+          console.log('[AUTH] DATABASE_URL exists:', !!process.env.DATABASE_URL);
+
           const { email, password } = loginSchema.parse(credentials);
+          console.log('[AUTH] Parsed credentials for email:', email);
 
           // Find user by email
           const user = await prisma.user.findUnique({
             where: { email },
           });
+          console.log('[AUTH] User found:', !!user);
 
           if (!user) {
-            console.log('No user found with email:', email);
+            console.log('[AUTH] ERROR: No user found with email:', email);
             return null;
           }
+
+          console.log('[AUTH] User role:', user.role);
+          console.log('[AUTH] Password hash exists:', !!user.password);
 
           // Verify password
           const isValidPassword = await bcrypt.compare(password, user.password);
+          console.log('[AUTH] Password valid:', isValidPassword);
 
           if (!isValidPassword) {
-            console.log('Invalid password for user:', email);
+            console.log('[AUTH] ERROR: Invalid password for user:', email);
             return null;
           }
 
+          console.log('[AUTH] Login successful for:', email);
           // Return user object (password excluded)
           return {
             id: user.id,
@@ -55,7 +65,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             role: user.role,
           };
         } catch (error) {
-          console.error('Auth error:', error);
+          console.error('[AUTH] ERROR:', error);
           return null;
         }
       },
