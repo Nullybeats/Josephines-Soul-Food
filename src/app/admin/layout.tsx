@@ -8,7 +8,6 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   // Protect this entire layout - redirect to login if not authenticated
-  // Note: /admin/login has its own layout.tsx that bypasses this
   const session = await requireAuth();
 
   // If we get here, user is authenticated
