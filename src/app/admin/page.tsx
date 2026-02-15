@@ -124,13 +124,13 @@ export default async function AdminDashboard() {
 
   return (
     <div className="space-y-8">
-      {/* Welcome Section */}
+      {/* Page Header */}
       <div>
         <h1 className="text-3xl font-display font-bold text-gray-900">
           Dashboard
         </h1>
         <p className="mt-2 text-gray-600">
-          Welcome back, {session.user.name}! Here's what's happening today.
+          Here's what's happening today.
         </p>
       </div>
 
