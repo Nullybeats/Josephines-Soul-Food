@@ -211,13 +211,13 @@ export default async function CateringPage() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex flex-col">
                         <div className="text-sm font-medium text-gray-900">
-                          {request.customerName}
+                          {request.name}
                         </div>
                         <div className="text-sm text-gray-500">
-                          {request.customerEmail}
+                          {request.email}
                         </div>
                         <div className="text-sm text-gray-500">
-                          {request.customerPhone}
+                          {request.phone}
                         </div>
                       </div>
                     </td>
@@ -249,7 +249,7 @@ export default async function CateringPage() {
                       <div className="flex items-center">
                         <DollarSign className="h-4 w-4 text-gray-400 mr-2" />
                         <span className="text-sm text-gray-900">
-                          {request.budget || 'Not specified'}
+                          {request.budget ? `$${request.budget.toNumber().toFixed(2)}` : 'Not specified'}
                         </span>
                       </div>
                     </td>
