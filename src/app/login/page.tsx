@@ -89,7 +89,7 @@ export default function AdminLoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#816B3B] focus:border-transparent transition-colors"
-                placeholder="admin@josephinessoulfood.com"
+                placeholder="Enter your email"
                 disabled={isLoading}
               />
             </div>
@@ -149,13 +149,6 @@ export default function AdminLoginPage() {
               )}
             </button>
           </form>
-
-          {/* Dev Note */}
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <p className="text-xs text-gray-500 text-center">
-              Default credentials: admin@josephinessoulfood.com / admin123
-            </p>
-          </div>
         </div>
 
         {/* Back to Site Link */}
