@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import { NeonSign } from './NeonSign';
+import { useCartStore } from '@/lib/store';
+import { toast } from 'sonner';
+import type { MenuItem } from '@/types';
 
 const featuredDishes = [
   {
@@ -84,6 +87,7 @@ const featuredDishes = [
 export function FeaturedMenu() {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
   const gridRef = useRef<HTMLDivElement>(null);
+  const addItem = useCartStore((s) => s.addItem);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -213,7 +217,19 @@ export function FeaturedMenu() {
                   variant="primary"
                   size="md"
                   className="w-full font-bold"
-                  onClick={() => console.log(`Add ${dish.name} to cart`)}
+                  onClick={() => {
+                    const menuItem: MenuItem = {
+                      id: String(dish.id),
+                      name: dish.name,
+                      description: dish.description,
+                      price: dish.price,
+                      image: dish.image,
+                      category: 'entrees',
+                      available: true,
+                    };
+                    addItem(menuItem, 'menu');
+                    toast.success(`${dish.name} added to cart`);
+                  }}
                 >
                     Quick Add • ${dish.price.toFixed(2)}
                   </Button>

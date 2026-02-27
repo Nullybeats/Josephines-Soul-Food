@@ -1,10 +1,22 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
+import { useCartStore } from '@/lib/store';
+import { CartSheet } from '@/components/cart/CartSheet';
 
 export function Header() {
+  const [mounted, setMounted] = useState(false);
+  const toggleCart = useCartStore((s) => s.toggleCart);
+  const getItemCount = useCartStore((s) => s.getItemCount);
+
+  useEffect(() => { setMounted(true); }, []);
+
+  const itemCount = mounted ? getItemCount() : 0;
+
   return (
+    <>
     <header className="bg-gradient-to-r from-amber-50/90 via-orange-50/90 to-amber-50/90 border-b border-amber-200/50 sticky top-0 z-50 backdrop-blur-md shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-28">
@@ -75,13 +87,16 @@ export function Header() {
 
             {/* Cart */}
             <button
+              onClick={() => toggleCart()}
               className="relative p-2.5 text-amber-900 hover:text-amber-700 hover:bg-amber-100/50 rounded-lg transition-all"
               aria-label="Shopping cart"
             >
               <span className="font-bold text-sm">Cart</span>
-              <span className="absolute top-0 right-0 w-4 h-4 bg-orange-600 text-white text-[0.6rem] font-bold rounded-full flex items-center justify-center">
-                0
-              </span>
+              {itemCount > 0 && (
+                <span className="absolute top-0 right-0 w-4 h-4 bg-orange-600 text-white text-[0.6rem] font-bold rounded-full flex items-center justify-center">
+                  {itemCount}
+                </span>
+              )}
             </button>
 
             {/* Order Button */}
@@ -107,5 +122,7 @@ export function Header() {
         </div>
       </div>
     </header>
+    <CartSheet />
+    </>
   );
 }

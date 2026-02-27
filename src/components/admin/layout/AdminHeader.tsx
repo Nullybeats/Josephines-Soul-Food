@@ -40,6 +40,7 @@ export default function AdminHeader({ user }: AdminHeaderProps) {
           <button
             type="button"
             className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
+            title="Notifications coming soon"
           >
             <span className="sr-only">View notifications</span>
             <Bell className="h-6 w-6" aria-hidden="true" />

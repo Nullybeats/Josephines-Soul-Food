@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/Button';
 import { useCartStore } from '@/lib/store';
 import { formatPriceFromDollars } from '@/lib/utils';
+import { toast } from 'sonner';
 import type { Product } from '@/types';
 
 // Sample merchandise items
@@ -112,6 +113,7 @@ export default function ShopPage() {
 
   const handleAddToCart = (product: Product) => {
     addItem(product, 'product');
+    toast.success(`${product.name} added to cart`);
   };
 
   // Group products by category

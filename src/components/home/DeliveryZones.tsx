@@ -13,13 +13,13 @@ const deliveryZones = [
     name: 'Old West End',
     time: '15-20 min',
     neighborhoods: ['Historic District', 'Collingwood', 'Parkwood'],
-    image: '/images/locations/university-circle.jpg',
+    image: '/images/locations/old-west-end.jpg',
   },
   {
     name: 'West Toledo',
     time: '20-25 min',
     neighborhoods: ['Secor Gardens', 'Point Place', 'Ottawa Hills'],
-    image: '/images/locations/ohio-city.jpg',
+    image: '/images/locations/west-toledo.jpg',
   },
   {
     name: 'East Toledo',

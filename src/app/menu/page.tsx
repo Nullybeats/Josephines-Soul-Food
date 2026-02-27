@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/Button';
 import { useCartStore } from '@/lib/store';
 import { formatPriceFromDollars, cn } from '@/lib/utils';
+import { toast } from 'sonner';
 import type { MenuItem, MenuCategory } from '@/types';
 
 // Best sellers for featured section - drives visual hierarchy
@@ -444,7 +445,7 @@ export default function MenuPage() {
                         variant="primary"
                         size="sm"
                         className="w-full"
-                        onClick={() => addItem(item, 'menu')}
+                        onClick={() => { addItem(item, 'menu'); toast.success(`${item.name} added to cart`); }}
                       >
                         Add to Cart
                       </Button>
@@ -531,7 +532,7 @@ export default function MenuPage() {
                   <Button
                     variant="secondary"
                     size="sm"
-                    onClick={() => addItem(item, 'menu')}
+                    onClick={() => { addItem(item, 'menu'); toast.success(`${item.name} added to cart`); }}
                   >
                     Add to Cart
                   </Button>

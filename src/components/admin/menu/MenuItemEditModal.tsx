@@ -10,6 +10,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
 
 const CATEGORIES = [
   { value: 'ENTREES', label: 'Entrees' },
@@ -127,6 +128,7 @@ export default function MenuItemEditModal({
       }
 
       const updated = await res.json();
+      toast.success(`${name} updated successfully`);
 
       onSaved({
         ...item,
@@ -145,7 +147,9 @@ export default function MenuItemEditModal({
 
       onOpenChange(false);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong');
+      const message = err instanceof Error ? err.message : 'Something went wrong';
+      setError(message);
+      toast.error(message);
     } finally {
       setSaving(false);
     }
